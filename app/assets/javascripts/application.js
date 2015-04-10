@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require custom
+//= require device.min
+//= require jquery.mb.YTPlayer
+
 //= require_tree .
