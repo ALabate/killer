@@ -27,6 +27,16 @@
             <tr>
               <td><b><%= model_class.human_attribute_name(:study) %></b></td><td><%= @participant_info['branch'] %> <%= @participant_info['level'] %> <%= @participant_info['speciality'] %></td>
             </tr>
+            <tr>
+                <td>Inscription</td>
+                <td>
+                  <% if @participant.paid %>
+                    <span class="label label-success">PAYÉ</span>
+                  <% else %>
+                    <span class="label label-warning">EN ATTENTE</span>
+                  <% end %>
+              </td>
+            </tr>
         </tbody>
       </table>
 
