@@ -26,6 +26,9 @@ gem "uglifier"
 gem "unicorn"
 gem "oauth2"
 gem "http"
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
 
 group :development do
   gem "spring"
