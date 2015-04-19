@@ -10,6 +10,6 @@ Rails.application.routes.draw do
 
 	scope "/admin", module: "admin" do
 		resources :participants
-		get '/', to: 'admin_application#home'
+		get '/', to: 'participants#index'
 	end
 end

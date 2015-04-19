@@ -3,7 +3,7 @@ class Admin::AdminApplicationController < ApplicationController
   layout 'admin_application'
 
   def home
-
+    @current_user ||= EtuUtt::Api.get(current_access_token, 'public/user/account')
   end
 
   protected

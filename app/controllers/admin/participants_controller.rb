@@ -8,6 +8,9 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
 
   # GET /participants/1
   def show
+    @participant_info ||= EtuUtt::Api.get(current_access_token, 'public/users/'+ @participant.login )
+    puts "doeijioejeiodeoidioejdoiejdoej"
+    puts @participant_info.inspect
   end
 
   # GET /participants/new

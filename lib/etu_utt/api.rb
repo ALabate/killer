@@ -55,7 +55,7 @@ module EtuUtt
 
 		# render the response data of a get to the api
 		def self.get(access_token, uri)
-			response = HTTP.get(ENV['KILLER_APP_URI']+"public/user/account", params: {access_token: access_token}).body
+			response = HTTP.get(ENV['KILLER_APP_URI']+uri, params: {access_token: access_token}).body
 			JSON.parse(response)['response']['data']
 		end
 

@@ -3,10 +3,40 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:login) %>:</strong></dt>
-  <dd><%= @participant.login %></dd>
-</dl>
+
+
+<div class="row">
+    <div class="col-md-4"><%= user_image(@participant_info) %>
+      <b><%= @participant_info['fullName'] %></b>
+    </div>
+    <div class="col-md-8">
+
+
+      <table class="table table-bordered">
+        <tbody>
+            
+            <tr><td><b><%= model_class.human_attribute_name(:login) %></b></td><td><%= @participant.login %></td></tr>
+            <tr>
+              <tr><td><b><%= model_class.human_attribute_name(:student_id) %></b></td><td><%= @participant_info['studentId'] %></td></tr>
+            <tr>
+              <td><b><%= model_class.human_attribute_name(:full_name) %></b></td><td><%= @participant_info['fullName'] %></td>
+            </tr>
+            <tr>
+              <td><b><%= model_class.human_attribute_name(:email) %></b></td><td><%= @participant_info['email'] %></td>
+            </tr>
+            <tr>
+              <td><b><%= model_class.human_attribute_name(:study) %></b></td><td><%= @participant_info['branch'] %> <%= @participant_info['level'] %> <%= @participant_info['speciality'] %></td>
+            </tr>
+        </tbody>
+      </table>
+
+
+
+    </div>
+
+</div>
+
+
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               participants_path, :class => 'btn btn-default'  %>
