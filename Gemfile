@@ -24,6 +24,8 @@ gem "simple_form"
 gem "title"
 gem "uglifier"
 gem "unicorn"
+gem "oauth2"
+gem "http"
 
 group :development do
   gem "spring"
