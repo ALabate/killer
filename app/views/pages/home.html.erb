@@ -13,11 +13,18 @@
                 </p>
                 <p></p>
                     <p class='big-background'> 
+                        <% if @participant.paid %>
+                            <span class="label label-success">INSCRIPTION COMPléte !</span> <br /><br />
+                            Tu recevras un e-mail lors de l'ouverture du Killer, le 04 mai 2015 !
+                        <% else %>
+                            Pour valider ton inscription une participation de 0,50 € <br /> est à regler au BDE avant l'ouverture du killer, le 04 mai 2015.
+                             <br />
+                            <span class="label label-warning">PAIEMENT EN ATTENTE</span> <br/>
+                        <% end %>
 
-                        Pour valider ton inscription une participation de 0,50 € <br /> est à regler au BDE avant le 04 mai 2015
                     </p>
                     <p>
-                        <%= link_to "JE ME DECONNECTE", oauth2_sign_out_path, class: "big-background-btn" %>
+                        <%= link_to "JE ME DECONNECTE DE CET ESPACE ULTRA SECRET", oauth2_sign_out_path, class: "big-background-btn" %>
                     </p>
                 <% else %>
                 <p class='big-background'> 
