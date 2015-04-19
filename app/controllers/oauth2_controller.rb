@@ -7,6 +7,8 @@ class Oauth2Controller < ApplicationController
   def callback
    tokens = EtuUtt::Api.new.get_tokens(params[:authorization_code])
    store_tokens(tokens)
+   user = current_user
+   Participant.where(student_id: user['studentId'],login: user['login']).first_or_create
    redirect_to root_path
   end
 
