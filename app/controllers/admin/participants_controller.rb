@@ -25,7 +25,7 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
     @participant = Participant.new(participant_params)
 
     if @participant.save
-      redirect_to @participant, notice: 'Participant was successfully created.'
+      redirect_to ENV['RAILS_RELATIVE_URL_ROOT']+participant_path(@participant), notice: 'Participant was successfully created.'
     else
       render :new
     end
@@ -34,7 +34,7 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
   # PATCH/PUT /participants/1
   def update
     if @participant.update(participant_params)
-      redirect_to @participant, notice: 'Participant was successfully updated.'
+      redirect_to ENV['RAILS_RELATIVE_URL_ROOT']+participant_path(@participant), notice: 'Participant was successfully updated.'
     else
       render :edit
     end
@@ -43,7 +43,7 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
   # DELETE /participants/1
   def destroy
     @participant.destroy
-    redirect_to participants_url, notice: 'Participant was successfully destroyed.'
+    redirect_to ENV['RAILS_RELATIVE_URL_ROOT']+participants_path, notice: 'Participant was successfully destroyed.'
   end
 
   private

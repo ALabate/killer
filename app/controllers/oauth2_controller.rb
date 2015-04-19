@@ -9,12 +9,12 @@ class Oauth2Controller < ApplicationController
    store_tokens(tokens)
    user = current_user
    Participant.where(login: user['login']).first_or_create
-   redirect_to root_path
+   redirect_to ENV['HOST']
   end
 
   def sign_out
   	flush_tokens()
-  	redirect_to root_path
+  	redirect_to ENV['HOST']
   end
 
 end

@@ -24,7 +24,7 @@
 
                     </p>
                     <p>
-                        <%= link_to "JE ME DECONNECTE DE CET ESPACE ULTRA SECRET", oauth2_sign_out_path, class: "big-background-btn" %>
+                        <%= link_to "JE ME DECONNECTE DE CET ESPACE ULTRA SECRET", ENV['RAILS_RELATIVE_URL_ROOT']+oauth2_sign_out_path, class: "big-background-btn" %>
                     </p>
                 <% else %>
                 <p class='big-background'> 
@@ -33,8 +33,8 @@
                     </p>
 
                     <p>
-                    <%= link_to "JE M'INSCRIS", sign_up_path, class: "big-background-btn" %>
-                    <%= link_to "JE ME CONNECTE", sign_in_path, class: "big-background-btn" %>
+                    <%= link_to "JE M'INSCRIS", ENV['RAILS_RELATIVE_URL_ROOT']+sign_up_path, class: "big-background-btn" %>
+                    <%= link_to "JE ME CONNECTE", ENV['RAILS_RELATIVE_URL_ROOT']+sign_in_path, class: "big-background-btn" %>
                 </p>
                 <% end %>
         </div>                                                    
