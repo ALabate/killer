@@ -1,0 +1,48 @@
+---
+fr:
+  admin:
+    participants:
+      edit:
+        title: Modification du participant
+      form:
+        cancel: Annuler
+      index:
+        actions: Actions
+        confirm: Confirmer
+        destroy: Supprimer
+        edit: Modifier
+        new: Nouveau
+        title: Participants
+      new:
+        title: Nouveau
+      show:
+        back: Précédent
+        confirm: Confirmez
+        destroy: Supprimer
+        edit: Modifier
+        title: Participant
+  date:
+    formats:
+      default: "%m/%d/%Y"
+      with_weekday: "%a %m/%d/%y"
+  helpers:
+    actions: Actions
+    submit:
+      # This will be the default ones, will take effect if no other
+      # are specifically defined for the models.
+      create: "Créer"
+      update: "Modifier"
+    links:
+      back: Précédent
+      cancel: Annuler
+      confirm: Confirmer
+      destroy: Supprimer
+      edit: Modifier
+      new: Nouveau
+  time:
+    formats:
+      date: "%d %B %Y"
+      default: "%d/%m/%Y %Hh %Mmin %Ss"
+      short: "%d %b %Hh%M"
+  titles:
+    application: Le Killer
