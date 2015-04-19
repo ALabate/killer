@@ -1,8 +1,8 @@
 class Admin < ActiveRecord::Base
-	validates :student_id, uniqueness: true
-	validates :student_id, presence: true
+	validates :login, uniqueness: true
+	validates :login, presence: true
 
-	def self.is_admin?(student_id)
-		Admin.exists?(student_id: student_id)
+	def self.is_admin?(login)
+		Admin.exists?(login: login)
 	end
 end

@@ -1,5 +1,9 @@
 class Participant < ActiveRecord::Base
-	validates :student_id, :login, uniqueness: true
-	validates :student_id, :login, presence: true
+	validates :login, uniqueness: true
+	validates :login, presence: true
+
+	def to_param
+		login
+	end
 
 end

@@ -16,7 +16,7 @@ class Admin::AdminApplicationController < ApplicationController
   end
 
   def admin_signed_in?
-    user_signed_in? && Admin.is_admin?(current_user['studentId'])
+    user_signed_in? && Admin.is_admin?(current_user['login'])
   end
 
 end

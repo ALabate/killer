@@ -48,11 +48,11 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_participant
-      @participant = Participant.find(params[:id])
+      @participant = Participant.find_by_login(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def participant_params
-      params.require(:participant).permit(:student_id)
+      params.require(:participant).permit(:login)
     end
 end
