@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-  	EtuUtt::Api.get(current_access_token, 'public/user/account')
+  	@current_user ||= EtuUtt::Api.get(current_access_token, 'public/user/account')
   end
   
   # Return the curent access_token or another one (trough the refresh token) if it is expired 
