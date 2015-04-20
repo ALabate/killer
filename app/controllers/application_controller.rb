@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   protected 
 
+  def user_for_paper_trail
+    user_signed_in? ? @current_user['login'] : 'user not signed in'
+  end
+
   def user_signed_in?
   	current_access_token != nil && current_user != nil
   end
