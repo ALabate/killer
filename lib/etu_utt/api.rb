@@ -36,6 +36,8 @@ module EtuUtt
 						{ grant_type: grant_type, authorization_code: code }
 					elsif grant_type == 'refresh_token' 
 						{ grant_type: grant_type, refresh_token: code }
+					elsif grant_type == 'client_credentials' 
+						{ grant_type: grant_type }
 					end
 
 			response = HTTP['Content-Type' => 'application/x-www-form-urlencoded', "Authorization" => "Basic #{@authorization_basic}"]
@@ -56,7 +58,12 @@ module EtuUtt
 		# render the response data of a get to the api
 		def self.get(access_token, uri)
 			response = HTTP.get(ENV['KILLER_APP_URI']+uri, params: {access_token: access_token}).body
-			JSON.parse(response)['response']['data']
+			response = JSON.parse(response)['response']
+			if response == []
+				nil
+			else
+				response['data']
+			end
 		end
 
 	end
