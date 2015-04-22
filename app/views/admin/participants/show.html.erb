@@ -49,11 +49,11 @@
 
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              ENV['RAILS_RELATIVE_URL_ROOT']+participants_path, :class => 'btn btn-default'  %>
+              participants_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              ENV['RAILS_RELATIVE_URL_ROOT']+edit_participant_path(@participant), :class => 'btn btn-default' %>
+              edit_participant_path(@participant), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              ENV['RAILS_RELATIVE_URL_ROOT']+participant_path(@participant),
+              participant_path(@participant),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>

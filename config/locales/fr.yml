@@ -42,7 +42,7 @@ fr:
   time:
     formats:
       date: "%d %B %Y"
-      default: "%d/%m/%Y"
+      default: "%d/%m/%Y %Hh %Mmin %Ss"
       short: "%d %b %Hh%M"
   titles:
     application: Le Killer

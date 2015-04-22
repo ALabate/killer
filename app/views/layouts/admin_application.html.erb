@@ -33,7 +33,7 @@
             <li class="active"><a href="#">Liste des participants</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href='#'>Connecté en tant que <b><%= current_user['fullName'] %></b></a></li><li><%= link_to "Se déconnecter", ENV['RAILS_RELATIVE_URL_ROOT']+oauth2_sign_out_path %></li>
+            <li><a href='#'>Connecté en tant que <b><%= current_user['fullName'] %></b></a></li><li><%= link_to "Se déconnecter", oauth2_sign_out_path %></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

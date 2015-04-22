@@ -11,7 +11,7 @@ class Admin::AdminApplicationController < ApplicationController
   def authenticate_admin!
     unless admin_signed_in?
       flash[:error] = "Vous n'avez pas les authorisations nécessaires pour accéder à cette page"
-      redirect_to ENV['HOST']
+      redirect_to ENV.fetch("HOST")
     end
   end
 

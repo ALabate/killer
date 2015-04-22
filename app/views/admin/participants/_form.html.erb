@@ -1,11 +1,4 @@
-<% url = if @participant.persisted? 
-          ENV['RAILS_RELATIVE_URL_ROOT']+participant_path(@participant)
-         else
-          ENV['RAILS_RELATIVE_URL_ROOT']+participants_path
-         end
- %>
-
-  <%= simple_form_for @participant, url: url, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @participant, :html => { :class => 'form-horizontal' } do |f| %>
   
   <% if @participant.persisted? %>
   	<%= f.input :login, disabled: true %>
@@ -21,5 +14,5 @@
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                ENV['RAILS_RELATIVE_URL_ROOT']+participants_path, :class => 'btn btn-default' %>
+                participants_path, :class => 'btn btn-default' %>
 <% end %>
