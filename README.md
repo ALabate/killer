@@ -1,4 +1,4 @@
-# Killer
+![KILLER Banner](http://cl.ly/image/332z2V0I3d0V/Screen%20Shot%202015-04-22%20at%2022.40.45.png)
 
 ## Getting Started
 
