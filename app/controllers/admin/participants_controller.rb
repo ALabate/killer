@@ -23,7 +23,7 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
   # POST /participants
   def create
     @participant = Participant.new(participant_params)
-
+    @participant.game = Game.last
     if @participant.save
       redirect_to @participant, notice: 'Participant was successfully created.'
     else
