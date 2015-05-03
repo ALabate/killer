@@ -1,3 +1,3 @@
 class Game < ActiveRecord::Base
-	has_many :participants
+	has_many :players, -> { validated }, :class_name => 'Participant'
 end
