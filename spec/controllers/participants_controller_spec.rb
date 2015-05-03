@@ -35,8 +35,7 @@ RSpec.describe Admin::ParticipantsController, :type => :controller do
         {"rel"=>"user.badges", "uri"=>"/api/public/users/lagrangm/badges"},
         {"rel"=>"user.image", "uri"=>"/uploads/photos/lagrangm.png"}, {"rel"=>"user.official_image", "uri"=>"/uploads/photos/lagrangm_official.jpg"}]
     }
-    )
-
+    
   end
 
 

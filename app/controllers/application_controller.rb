@@ -17,13 +17,12 @@ class ApplicationController < ActionController::Base
 
   def current_user
   	@current_user ||= EtuUtt::Api.get(current_access_token, 'public/user/account')
-    puts @current_user.inspect
     @current_user
   end
   
   # Return the curent access_token or another one (trough the refresh token) if it is expired 
   def current_access_token
-  	# TODO: Improve this
+  # TODO: Improve this
 	#store_tokens(EtuUtt::Api.new.get_tokens(session[:refresh_token], 'refresh_token')) 
 	return session[:access_token]
   end
