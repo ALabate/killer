@@ -1,7 +1,5 @@
 FactoryGirl.define do
   factory :participant do
-    login "MyString"
-student_id "MyString"
+    paid true
   end
-
 end

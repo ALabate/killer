@@ -5,8 +5,14 @@ class Participant < ActiveRecord::Base
 
 	belongs_to :game
 
-	has_many :hunters, class_name: 'Target', foreign_key: "hunter_id"  
-	has_many :targets, class_name: 'Target', foreign_key: "pursued_id"
+	#has_many :hunters, :through => :hunter, :source => :target
+	#has_many :targets, :through => :pursu, :source => :target
+
+	has_many :targets, foreign_key: "hunter_id", class_name: 'Target'
+	has_many :hunters, foreign_key: "pursued_id", class_name: 'Target'
+
+	has_many :targeter_players, through: :hunters, source: :hunter
+	has_many :targeted_players, through: :targets, source: :pursued
 	
 	has_paper_trail
 
@@ -17,5 +23,12 @@ class Participant < ActiveRecord::Base
 		login
 	end
 
+	def target 
+		targeted_players.first
+	end
+
+	def hunter 
+		targeter_players.first
+	end
 	
 end
