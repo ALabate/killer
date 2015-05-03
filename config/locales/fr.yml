@@ -22,6 +22,9 @@ fr:
         edit: Modifier
         title: Participant
   date:
+    abbr_day_names: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]
+    abbr_month_names: [~, jan, fév, mar, avr, mai, juin, jul, août, sept, oct, nov, déc]
+    day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
     formats:
       default: "%m/%d/%Y"
       with_weekday: "%a %m/%d/%y"
@@ -43,6 +46,7 @@ fr:
     formats:
       date: "%d %B %Y"
       default: "%d/%m/%Y %Hh %Mmin %Ss"
-      short: "%d %b %Hh%M"
+      only_day: "%d" 
+      day_month_year: "%d %b %Y"
   titles:
     application: Le Killer

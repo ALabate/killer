@@ -5,7 +5,7 @@
         <div class="big-background-container">
                 <h1 class="big-background-title">LE KILLER</h1>
                 <div class="divider"></div>
-                <h1 id="colorize">du 04 au 14 mai 2015</h1>
+                <h1 id="colorize">du <%= l(Game.current.beginning, format: :only_day) %> au <%= l(Game.current.ending,format: :day_month_year) %></h1>
 
                 <% if user_signed_in? %>
                 <p class='big-background'>
@@ -14,12 +14,20 @@
                 <p></p>
                     <p class='big-background'> 
                         <% if @participant.paid %>
-                            <span class="label label-success">INSCRIPTION COMPléte !</span> <br /><br />
-                            Tu recevras un e-mail lors de l'ouverture du Killer, le 04 mai 2015 !
+                            <% if Game.current.open? %>
+
+                                <%= render 'game_open' %>                    
+
+                            <% else %>
+                                
+                                <%= render 'waiting_for_game_openning' %>
+
+                            <% end %>
+
                         <% else %>
-                            Pour valider ton inscription une participation de 0,50 € <br /> est à regler au BDE avant l'ouverture du killer, le 04 mai 2015.
-                             <br />
-                            <span class="label label-warning">PAIEMENT EN ATTENTE</span> <br/>
+
+                            <%= render 'payment_is_waiting' %>
+                            
                         <% end %>
 
                     </p>
@@ -39,3 +47,7 @@
                 <% end %>
         </div>                                                    
 </section>
+  <% if user_signed_in? && @participant.paid && Game.current.open? %>
+    <%= render 'targets' %>
+  <% end %>
+</div>

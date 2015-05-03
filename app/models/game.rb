@@ -14,6 +14,19 @@ class Game < ActiveRecord::Base
 			end
 		end
 
+		nil
+		
 		# TODO: Send an email to the players
+	end
+
+	# Return the current game
+	def self.current
+		return Game.last
+	end
+
+	# Is the game open ?
+
+	def open?
+		Time.now >= self.beginning && Time.now <= self.ending
 	end
 end

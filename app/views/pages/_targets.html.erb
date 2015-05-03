@@ -1,0 +1,50 @@
+  <div class="wrapper">
+
+    <section class="about-section">
+     
+                <div class="about-section-container">
+                    <h2 class="about-section-title">MES CIBLES</h2> 
+
+                    <p>Tues ta cible pour débloquer une nouvelle cible. Tues le maximum de cibles pour être le grand vainqueur mais attention, ne te fais pas tuer par celui qui te menace, ou alors l'aventure s'arrête ici.</p>                
+
+                    <div class="bs-example" data-example-id="thumbnails-with-custom-content">
+    <div class="row" >
+
+
+    <% @participant.targets.each do |target| %>
+
+       <div class="col-sm-2 col-md-2"> 
+        <div class="thumbnail">
+          <img alt="100%x200" src="https://etu.utt.fr<%= target.pursued.image %>" data-holder-rendered="true" style="width: 100%; display: block;">
+          <div class="caption">
+            
+            <p><%= target.pursued.first_name %> <%= target.pursued.last_name %></p>
+            <p><a href="#" class="btn btn-default" role="button">J'AI TUE CETTE CIBLE</a></p>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+
+    <% nb_fake_target = @participant.targets.count <= 6 ? 6 - @participant.targets.count : 0 %>
+
+    <% nb_fake_target.times.each do |t| %>
+
+      <%= render 'no_target_div' %>
+
+    <% end %>
+
+    </div>
+
+                    <a href="https://github.com/pupunzi/jquery.mb.YTPlayer" target="_blank" class="about-section-btn">→ J'ai découvert celui qui me menace et l'ai tué ←</a>
+                </div>
+
+    </section>
+
+
+     <section class="small-background-section">
+     <div class="pattern"></div>
+                    <div class="small-background-container">
+                     
+                    </div>
+    </section>
