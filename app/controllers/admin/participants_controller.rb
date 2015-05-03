@@ -54,6 +54,6 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def participant_params
-      params.require(:participant).permit(:login, :paid)
+      params.require(:participant).permit(:login, :paid, :game_id)
     end
 end

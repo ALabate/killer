@@ -20,15 +20,38 @@ require 'rails_helper'
 
 RSpec.describe Admin::ParticipantsController, :type => :controller do
 
+  before do
+
+    allow_any_instance_of(Admin::AdminApplicationController).to receive(:admin_signed_in?).and_return( true )
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(
+    {
+      "login"=>"lagrangm", "studentId"=>35723, "email"=>"martin.lagrange@utt.fr", 
+      "firstName"=>"Martin", "lastName"=>"LAGRANGE", "fullName"=>"Martin LAGRANGE", 
+      "branch"=>"ISI", "level"=>"5", "speciality"=>"MPL", "surname"=>"TinMar", "jadis"=>"Arrière, arrière, arrière ... petit fils du célèbre Mathématicien Joseph-Louis Lagrange.", 
+      "passions"=>"Théâtre & Impro (les Ch'UTT de vers !)\r\nInstruments de musique, Trompette\r\nSalsa Rueda de Casino\r\nDév web & Ruby\r\n[...]",
+       "birthday"=>"1992-06-17T00:00:00+0200", "website"=>nil, "facebook"=>nil,
+       "twitter"=>nil, "linkedin"=>nil, "viadeo"=>nil, "isStudent"=>true, "bdeMember"=>false, "_embed"=>{"badges"=>[32, 33, 1, 2, 11]}, "_links"=>[{"rel"=>"self",
+        "uri"=>"/api/public/users/lagrangm"}, 
+        {"rel"=>"user.badges", "uri"=>"/api/public/users/lagrangm/badges"},
+        {"rel"=>"user.image", "uri"=>"/uploads/photos/lagrangm.png"}, {"rel"=>"user.official_image", "uri"=>"/uploads/photos/lagrangm_official.jpg"}]
+    }
+    )
+
+  end
+
+
+  WebMock.allow_net_connect!
   # This should return the minimal set of attributes required to create a valid
   # Participant. As you add validations to Participant, be sure to
   # adjust the attributes here as well.
+  let(:game) { create(:game) }
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {login: 'lagrangm', game_id: game.id, paid: false}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {login: nil, paid: nil}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +126,14 @@ RSpec.describe Admin::ParticipantsController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {paid: true}
       }
 
       it "updates the requested participant" do
         participant = Participant.create! valid_attributes
         put :update, {:id => participant.to_param, :participant => new_attributes}, valid_session
         participant.reload
-        skip("Add assertions for updated state")
+        participant.paid == true
       end
 
       it "assigns the requested participant as @participant" do

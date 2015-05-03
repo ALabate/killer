@@ -34,6 +34,9 @@ en:
       destroy: Destroy
       edit: Edit
       new: New
+    submit:
+      create: Créer
+      update: Modifier
   time:
     formats:
       date: "%b %-d, %Y"
