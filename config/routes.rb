@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 			collection do 
 				get 'killed'
 				get 'alive'
+				get 'loop'
 			end
 			member do 
 				get 'targets'

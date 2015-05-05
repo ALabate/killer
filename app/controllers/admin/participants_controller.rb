@@ -23,6 +23,10 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
   def targets
   end
 
+  def loop
+    @participants = Participant.validated.all
+  end
+
   # POST /participants
   def create
     @participant = Participant.new(participant_params)
