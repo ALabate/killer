@@ -1,0 +1,35 @@
+  <div class="row" >
+      <% @participant.targets.each do |target| %>
+
+       <div class="col-sm-2 col-md-2"> 
+        <div class="thumbnail img-thumbnail">
+          <img alt="100%x200" src="https://etu.utt.fr<%= target.pursued.image %>" class="img-thumbnail" data-holder-rendered="true" style="width: 100%; display: block;">
+          <div class="caption">
+            
+            <p><%= target.pursued.first_name %> <%= target.pursued.last_name %></p>
+            <% if target.killed? %>
+              <p><span class="label label-success">CIBLE ATTEINTE</span> </p>
+            <% elsif target.suffering? %>
+              <p>
+                <span class="label label-warning">CONFIRMATION</span>
+                 <span class="label label-warning">EN COURS</span>
+              </p>
+            <% elsif target.unreached? %>
+              <p><span class="label label-warning">CIBLE NON ATTEINTE</span></p>
+            <% else %>
+              <p><%= link_to 'J\'AI ATTEINT MA CIBLE', kill_path(target.pursued.login), class:'btn btn-default' %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+
+    <% nb_fake_target = @participant.targets.count <= 6 ? 6 - @participant.targets.count : 0 %>
+
+    <% nb_fake_target.times.each do |t| %>
+
+      <%= render 'pages/no_target_div' %>
+
+    <% end %>
+  </div>

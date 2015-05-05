@@ -1,5 +1,5 @@
 class Admin::ParticipantsController < Admin::AdminApplicationController
-  before_action :set_participant, only: [:show, :edit, :update, :destroy]
+  before_action :set_participant, only: [:show, :edit, :update, :destroy, :targets]
 
   # GET /participants
   def index
@@ -18,6 +18,9 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
 
   # GET /participants/1/edit
   def edit
+  end
+
+  def targets
   end
 
   # POST /participants
