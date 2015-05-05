@@ -92,6 +92,58 @@ RSpec.describe Game, :type => :model do
 				end
 
 			end
+
+
+			context 'A kill B and G kill A' do
+				
+				let!(:a) {player1}
+				let!(:b) {player1.target}
+				let!(:g) {player1.hunter}
+				
+				before do
+					player1.target.kill!
+					player1.target.confirm_kill!
+
+					a.kill!
+					a.confirm_kill!
+				
+				end
+
+				it 'A should have one killed target' do
+					expect(player1.targets.killed.count).to eq(1)
+				end
+
+				it 'A should have one unreached target' do
+					expect(player1.targets.unreached.count).to eq(1)
+				end
+
+				it 'A should not have current target' do
+					expect(player1.target).to eq(nil)
+				end
+
+				###
+
+				it 'B should not have current target' do
+					expect(b.target).to eq(nil)
+				end
+
+				it 'B should have an unreached target' do
+					expect(b.targets.unreached.count).to eq(1)
+				end
+
+				#####
+
+				it 'G should be alive ' do
+					expect(g.alive?).to eq(true)
+				end
+
+				it 'G should have an new target ' do
+					expect(g.target).to_not eq(nil)
+				end
+
+			end
+
+
 		end
 	end
 end

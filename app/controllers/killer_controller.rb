@@ -8,7 +8,7 @@ class KillerController < ApplicationController
 
      if target.login == params[:login]
         target.kill!
-        flash[:success] = "Une confirmation de votre cible #{target.first_name} #{target.last_name} est maintenant nécessaire."
+        flash[:success] = "Votre cible #{target.first_name} #{target.last_name} doit confirmer que vous l'avez tué"
     end
 
     redirect_to ENV.fetch("HOST")

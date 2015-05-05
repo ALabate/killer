@@ -58,7 +58,7 @@ class Participant < ActiveRecord::Base
 	end
 
 	def recognize_as_unreached!
-		Target.where(pursued: self).take.recognize_as_unreached!
+		Target.healthy.where(pursued: self).take.recognize_as_unreached!
 	end
 
 end

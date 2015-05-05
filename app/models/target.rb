@@ -27,7 +27,7 @@ class Target < ActiveRecord::Base
     end
 
     event :recognize_as_unreached do
-    	 transitions :from => [:healthy, :suffering], :to => :unreached
+    	 transitions :from => [:healthy], :to => :unreached
     end
 
   end
