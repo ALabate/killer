@@ -1,11 +1,11 @@
-  <div class="wrapper">
+  <div class="wrapper" id="targets">
 
     <section class="about-section">
      
                 <div class="about-section-container">
                     <h2 class="about-section-title">MES CIBLES</h2> 
 
-                    <p>Tues ta cible pour débloquer une nouvelle cible. Tues le maximum de cibles pour être le grand vainqueur mais attention, ne te fais pas tuer par celui qui te menace, ou alors l'aventure s'arrête ici.</p>                
+                    <p>Tues ta cible pour débloquer une nouvelle cible. Tues le maximum de cibles pour être le grand vainqueur mais attention, ne te fais pas tuer par celui qui te menace ou alors l'aventure s'arrête ici.</p>                
 
                     <div class="bs-example" data-example-id="thumbnails-with-custom-content">
     <div class="row" >
@@ -14,12 +14,23 @@
     <% @participant.targets.each do |target| %>
 
        <div class="col-sm-2 col-md-2"> 
-        <div class="thumbnail">
-          <img alt="100%x200" src="https://etu.utt.fr<%= target.pursued.image %>" data-holder-rendered="true" style="width: 100%; display: block;">
+        <div class="thumbnail img-thumbnail">
+          <img alt="100%x200" src="https://etu.utt.fr<%= target.pursued.image %>" class="img-thumbnail" data-holder-rendered="true" style="width: 100%; display: block;">
           <div class="caption">
             
             <p><%= target.pursued.first_name %> <%= target.pursued.last_name %></p>
-            <p><a href="#" class="btn btn-default" role="button">J'AI TUE CETTE CIBLE</a></p>
+            <% if target.killed? %>
+              <p><span class="label label-success">CIBLE ATTEINTE</span> </p>
+            <% elsif target.suffering? %>
+              <p>
+                <span class="label label-warning">CONFIRMATION</span>
+                 <span class="label label-warning">EN COURS</span>
+              </p>
+            <% elsif target.unreached? %>
+              <p><span class="label label-warning">CIBLE NON ATTEINTE</span></p>
+            <% else %>
+              <p><a href="#" class="btn btn-default" role="button">J'AI ATTEINT MA CIBLE</a></p>
+            <% end %>
           </div>
         </div>
       </div>
@@ -35,8 +46,8 @@
     <% end %>
 
     </div>
-
-                    <a href="https://github.com/pupunzi/jquery.mb.YTPlayer" target="_blank" class="about-section-btn">→ J'ai découvert celui qui me menace et l'ai tué ←</a>
+    
+    <a href="" target="_blank" class="about-section-btn">La personne qui me menace m'a tué</a> <a href="" target="_blank" class="about-section-btn">J'ai découvert celui qui me menace et l'ai tué</a>
                 </div>
 
     </section>

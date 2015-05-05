@@ -8,9 +8,9 @@ class Game < ActiveRecord::Base
 
 		players.each_with_index do |player,index|
 			if index < players.count - 1
-				player.targeted_players << players[index+1]
+				Target.create!(hunter: player, pursued: players[index+1])
 			else
-				player.targeted_players << players.first
+				Target.create!(hunter: player, pursued: players.first)
 			end
 		end
 

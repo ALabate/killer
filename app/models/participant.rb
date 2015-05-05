@@ -11,8 +11,8 @@ class Participant < ActiveRecord::Base
 	has_many :targets, foreign_key: "hunter_id", class_name: 'Target'
 	has_many :hunters, foreign_key: "pursued_id", class_name: 'Target'
 
-	has_many :targeter_players, through: :hunters, source: :hunter
-	has_many :targeted_players, through: :targets, source: :pursued
+	#has_many :targeter_players, through: :hunters, source: :hunter
+	#has_many :targeted_players, through: :targets, source: :pursued
 	
 	has_paper_trail
 
@@ -23,12 +23,42 @@ class Participant < ActiveRecord::Base
 		login
 	end
 
+	# Get the target that the current participant have to kill
 	def target 
-		targeted_players.first
+		#Target.healthy.where(hunter: self).take.try(:pursued) || Target.suffering.where(hunter: self).take.try(:pursued)
+		targets.healthy.last.try(:pursued) || targets.suffering.last.try(:pursued)
 	end
 
-	def hunter 
-		targeter_players.first
+	# Get the hunter of the current participant
+	def hunter
+		#Target.healthy.where(pursued: self).take.try(:hunter) || Target.suffering.where(pursued: self).take.try(:hunter)
+		hunters.healthy.last.try(:hunter) || hunters.suffering.last.try(:hunter)
 	end
-	
+
+	def alive?
+		!dead?
+	end
+
+	def dead?
+		Target.killed.where(pursued: self).present?
+	end
+
+	### Delegation
+
+	def kill!
+		Target.healthy.where(pursued: self).take.kill!
+	end
+
+	def confirm_kill!
+		Target.suffering.where(pursued: self).take.confirm_kill!
+	end
+
+	def deny_kill!
+		Target.suffering.where(pursued: self).take.deny_kill!
+	end
+
+	def recognize_as_unreached!
+		Target.where(pursued: self).take.recognize_as_unreached!
+	end
+
 end

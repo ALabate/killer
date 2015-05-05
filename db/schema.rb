@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503141225) do
+ActiveRecord::Schema.define(version: 20150503175101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20150503141225) do
     t.integer  "pursued_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "aasm_state"
   end
 
   add_index "targets", ["hunter_id"], name: "index_targets_on_hunter_id", using: :btree

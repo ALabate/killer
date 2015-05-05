@@ -12,25 +12,25 @@
                     Hey, salut <b><%= current_user['firstName'] %> <%= current_user['lastName'] %> ! </b> 
                 </p>
                 <p></p>
-                    <p class='big-background'> 
+                    
                         <% if @participant.paid %>
                             <% if Game.current.open? %>
 
                                 <%= render 'game_open' %>                    
 
                             <% else %>
-                                
-                                <%= render 'waiting_for_game_openning' %>
-
+                                <p class='big-background'> 
+                                    <%= render 'waiting_for_game_openning' %>
+                                </p>
                             <% end %>
 
                         <% else %>
-
-                            <%= render 'payment_is_waiting' %>
-                            
+                            <p class='big-background'> 
+                                <%= render 'payment_is_waiting' %>
+                            </p>
                         <% end %>
 
-                    </p>
+                    
                     <p>
                         <%= link_to "JE ME DECONNECTE DE CET ESPACE ULTRA SECRET", oauth2_sign_out_path, class: "big-background-btn" %>
                     </p>
