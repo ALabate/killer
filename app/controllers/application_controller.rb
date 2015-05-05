@@ -5,7 +5,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :user_signed_in?, :store_tokens, :flush_tokens
 
-  protected 
+  before_filter :log_additional_data
+
+  protected
+
+  def log_additional_data
+      request.env["exception_notifier.exception_data"] = {
+        :user => current_user,
+        :access_token => current_access_token
+      }
+  end
 
   def user_for_paper_trail
     user_signed_in? ? @current_user['login'] : 'user not signed in'

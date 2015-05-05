@@ -85,4 +85,12 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = { host: ENV.fetch("HOST") }
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[ExceptionNotification] ",
+    :sender_address => %{"notifier" <lagrangemartin@gmail.com>},
+    :exception_recipients => %w{lagrangemartin@gmail.com}
+  }
+
 end

@@ -32,6 +32,7 @@ gem "twitter-bootstrap-rails"
 gem 'paper_trail'
 gem 'aasm'
 gem 'letter_opener_web', '~> 1.2.0', :group => :development
+gem 'exception_notification'
 
 group :development do
   gem "spring"

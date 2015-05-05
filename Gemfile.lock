@@ -93,6 +93,9 @@ GEM
     email_validator (1.5.0)
       activemodel
     erubis (2.7.0)
+    exception_notification (4.1.0)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     execjs (2.5.1)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -313,6 +316,7 @@ DEPENDENCIES
   delayed_job_active_record
   dotenv-rails
   email_validator
+  exception_notification
   factory_girl_rails
   flutie
   formulaic
