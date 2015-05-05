@@ -4,10 +4,10 @@ Rails.application.routes.draw do
 	get 'sign_up', to: 'oauth2#authorize_app'
 	get 'sign_in', to: 'oauth2#authorize_app'
 
-	get 'kill/:login', to: 'killer#kill', as: :kill
+	put 'kill/:login', to: 'killer#kill', as: :kill
 
-	get 'confirm_my_death', to: 'killer#confirm_my_death', as: :confirm_my_death
-	get 'deny_my_death', to: 'killer#deny_my_death', as: :deny_my_death
+	put 'confirm_my_death', to: 'killer#confirm_my_death', as: :confirm_my_death
+	put 'deny_my_death', to: 'killer#deny_my_death', as: :deny_my_death
 
 	get 'oauth2/authorize_app', to: 'oauth2#authorize_app'
 	get 'oauth2/callback', to: 'oauth2#callback'

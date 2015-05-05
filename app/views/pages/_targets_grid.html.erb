@@ -17,7 +17,7 @@
             <% elsif target.unreached? %>
               <p><span class="label label-warning">CIBLE NON ATTEINTE</span></p>
             <% else %>
-              <p><%= link_to 'J\'AI ATTEINT MA CIBLE', kill_path(target.pursued.login), class:'btn btn-default' %></p>
+              <p><%= link_to 'J\'AI ATTEINT MA CIBLE', kill_path(target.pursued.login),:method => :put, class:'btn btn-default' %></p>
             <% end %>
           </div>
         </div>
@@ -40,8 +40,8 @@
      <% if @participant.suffering? %>
   <p>
     <i><%= @participant.hunter.first_name %> <%= @participant.hunter.last_name %> a indiqué vous avoir tué : est-ce vrai ? </i>
-    <%= link_to "OUI", confirm_my_death_path, class:'btn btn-success' %>
-    <%= link_to "NON", deny_my_death_path, class:'btn btn-danger' %>
+    <%= link_to "OUI", confirm_my_death_path, :method => :put, class:'btn btn-success' %>
+    <%= link_to "NON", deny_my_death_path,:method => :put, class:'btn btn-danger' %>
 </p>
 
   <% if @participant.target.suffering? %>
@@ -51,7 +51,7 @@
 
   <% end %>
 
-     <%= link_to "La personne qui me menace m'a tué", confirm_my_death_path, class:'about-section-btn', :data => { :confirm => 'Es-tu sur de continuer ? Tu vas mourir si tu cliques sur oui'}  %>
+     <%= link_to "La personne qui me menace m'a tué", confirm_my_death_path, :method => :put, class:'about-section-btn', :data => { :confirm => 'Es-tu sur de continuer ? Tu vas mourir si tu cliques sur oui'}  %>
 
 
                
