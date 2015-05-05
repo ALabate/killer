@@ -7,11 +7,13 @@ class Game < ActiveRecord::Base
 		players = self.players.shuffle
 
 		players.each_with_index do |player,index|
+
 			if index < players.count - 1
 				Target.create!(hunter: player, pursued: players[index+1])
 			else
 				Target.create!(hunter: player, pursued: players.first)
 			end
+			PlayerMailer.opening_email(player).deliver_now
 		end
 
 		nil

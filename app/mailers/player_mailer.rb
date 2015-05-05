@@ -19,4 +19,9 @@ class PlayerMailer < ApplicationMailer
 		mail(to: @target.email, subject: "Tu es mort :-(")
 	end
 
+	def opening_email(participant)
+		@participant = participant
+		mail(to: @participant.email, subject: "Ouverture du Killer imminente !")
+	end
+
 end
