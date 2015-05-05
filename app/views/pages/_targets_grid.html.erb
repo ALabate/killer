@@ -34,8 +34,21 @@
     <% end %>
   </div>
 <hr />
+
      <% if @participant.alive? %>
-    <a href="" target="_blank" class="about-section-btn">La personne qui me menace m'a tué</a> <a href="" target="_blank" class="about-section-btn">J'ai découvert celui qui me menace et l'ai tué</a>
+
+     <% if @participant.suffering? %>
+  <p>
+    <i><%= @participant.hunter.first_name %> <%= @participant.hunter.last_name %> a indiqué vous avoir tué : est-ce vrai ? </i>
+    <%= link_to "OUI", confirm_my_death_path, class:'btn btn-success' %>
+    <%= link_to "NON", deny_my_death_path, class:'btn btn-danger' %>
+</p>
+  <% end %>
+
+     <%= link_to "La personne qui me menace m'a tué", confirm_my_death_path, class:'about-section-btn' %>
+<a href="" target="_blank" class="about-section-btn">J'ai découvert celui qui me menace et l'ai tué</a>
+
+
                
     <% else %>
       <p><i>Malheureusement, l'aventure s'arrete ici.<br /> Tu a été tué par <%= @participant.hunters.first.hunter.first_name %> <%= @participant.hunters.first.hunter.last_name %>.</i></p> 

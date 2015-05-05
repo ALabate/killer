@@ -143,6 +143,41 @@ RSpec.describe Game, :type => :model do
 
 			end
 
+			context 'Kill confirmation asynchronously
+				A ask kill B and B ask kill C then A confirm kill of A' do
+
+				let!(:a) {player1}
+				let!(:b) {a.target}
+				let!(:c) {b.target}
+				
+				before do
+					a.target.kill!
+					b.target.kill!
+
+					a.target.confirm_kill!
+				
+				end
+
+				it 'A should have one killed target' do
+					expect(a.targets.killed.count).to eq(1)
+				end
+
+				it 'A should have a new target and it should be the target of B' do
+					expect(a.target).to eq(c)
+				end
+
+
+
+				it 'B should not have a current target' do
+					expect(b.target).to eq(nil)
+				end
+
+				it 'B should have one unreached target' do
+					expect(b.targets.unreached.count).to eq(1)
+				end
+
+			end
+
 
 		end
 	end

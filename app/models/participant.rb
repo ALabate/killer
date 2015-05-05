@@ -43,14 +43,23 @@ class Participant < ActiveRecord::Base
 		Target.killed.where(pursued: self).present?
 	end
 
+	def suffering?
+		Target.suffering.where(pursued: self).present?
+	end
+
 	### Delegation
 
 	def kill!
-		Target.healthy.where(pursued: self).take.kill!
+		Target.healthy.where(pursued: self).take.try(:kill!) || false
+	end
+
+	def may_kill?
+		Target.healthy.where(pursued: self).take.try(:may_kill?) || false
 	end
 
 	def confirm_kill!
-		Target.suffering.where(pursued: self).take.confirm_kill!
+		t = Target.suffering.where(pursued: self).take || Target.healthy.where(pursued: self).take
+		t.confirm_kill!
 	end
 
 	def deny_kill!
@@ -58,7 +67,8 @@ class Participant < ActiveRecord::Base
 	end
 
 	def recognize_as_unreached!
-		Target.healthy.where(pursued: self).take.recognize_as_unreached!
+		t = Target.healthy.where(pursued: self).take || Target.suffering.where(pursued: self).take
+		t.recognize_as_unreached!
 	end
 
 end

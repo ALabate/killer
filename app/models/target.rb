@@ -19,7 +19,7 @@ class Target < ActiveRecord::Base
     end
 
     event :confirm_kill, after_commit: :changes_after_killed do
-    	 transitions :from => :suffering, :to => :killed
+    	 transitions :from => [:healthy, :suffering], :to => :killed
     end
 
     event :deny_kill do
@@ -27,7 +27,7 @@ class Target < ActiveRecord::Base
     end
 
     event :recognize_as_unreached do
-    	 transitions :from => [:healthy], :to => :unreached
+    	 transitions :from => [:healthy, :suffering], :to => :unreached
     end
 
   end
