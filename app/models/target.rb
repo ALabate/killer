@@ -6,6 +6,8 @@ class Target < ActiveRecord::Base
   validates :hunter,:pursued, presence: true
   validates :hunter_id, uniqueness: { scope: :pursued_id }
 
+  after_create :notify_new_target
+
   scope :not_killed, -> { where.not(aasm_state: 'killed') }
 
   aasm do 
@@ -14,7 +16,7 @@ class Target < ActiveRecord::Base
     state :killed
     state :unreached
 
-    event :kill do
+    event :kill, after_commit: :notify_kill do
     	 transitions :from => :healthy, :to => :suffering
     end
 
@@ -37,6 +39,15 @@ class Target < ActiveRecord::Base
       pursued_target.recognize_as_unreached!
       # Switch target from the pursued to the hunter
 			Target.create(hunter: self.hunter, pursued: pursued_target)
+      PlayerMailer.dead_email(self).deliver_now
+  end
+
+  def notify_kill
+    PlayerMailer.confirm_kill_email(self).deliver_now
+  end
+
+  def notify_new_target
+    PlayerMailer.new_target_email(self).deliver_now
   end
 
 end

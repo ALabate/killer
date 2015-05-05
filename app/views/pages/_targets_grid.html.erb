@@ -43,6 +43,12 @@
     <%= link_to "OUI", confirm_my_death_path, class:'btn btn-success' %>
     <%= link_to "NON", deny_my_death_path, class:'btn btn-danger' %>
 </p>
+
+  <% if @participant.target.suffering? %>
+    <div class="alert alert-danger" role="alert"><p><b>Un énorme conseil :</b> On dirait que tu as tué ta cible et que sa mort est en "attente de confirmation" de sa part. Avant de confirmer ta propre mort, attend que ta cible confirme que tu l'as bien tué. 
+    Autrement, cette cible ne sera pas comptabilisé dans ton tableau des cibles atteintes.</p></div>
+  <% end %>
+
   <% end %>
 
      <%= link_to "La personne qui me menace m'a tué", confirm_my_death_path, class:'about-section-btn' %>

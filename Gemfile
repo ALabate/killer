@@ -31,6 +31,7 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem "twitter-bootstrap-rails"
 gem 'paper_trail'
 gem 'aasm'
+gem 'letter_opener_web', '~> 1.2.0', :group => :development
 
 group :development do
   gem "spring"
