@@ -21,7 +21,16 @@ en:
         destroy: Destroy
         edit: Edit
         title: Title
+      targets:
+        back: Back
+        confirm: Confirm
+        destroy: Destroy
+        edit: Edit
   date:
+    abbr_day_names: '["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"]'
+    abbr_month_names: '[nil, "jan", "fév", "mar", "avr", "mai", "juin", "jul", "août",
+      "sept", "oct", "nov", "déc"]'
+    day_names: '["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]'
     formats:
       default: "%m/%d/%Y"
       with_weekday: "%a %m/%d/%y"
@@ -40,7 +49,9 @@ en:
   time:
     formats:
       date: "%b %-d, %Y"
+      day_month_year: "%d %b %Y"
       default: "%a, %b %-d, %Y at %r"
+      only_day: "%d"
       short: "%B %d"
   titles:
     application: The Killer

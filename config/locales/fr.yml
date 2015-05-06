@@ -21,20 +21,47 @@ fr:
         destroy: Supprimer
         edit: Modifier
         title: Participant
+      targets:
+        back: Back
+        confirm: Confirm
+        destroy: Destroy
+        edit: Edit
   date:
-    abbr_day_names: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]
-    abbr_month_names: [~, jan, fév, mar, avr, mai, juin, jul, août, sept, oct, nov, déc]
-    day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
+    abbr_day_names:
+    - Dim
+    - Lun
+    - Mar
+    - Mer
+    - Jeu
+    - Ven
+    - Sam
+    abbr_month_names:
+    - 
+    - jan
+    - fév
+    - mar
+    - avr
+    - mai
+    - juin
+    - jul
+    - août
+    - sept
+    - oct
+    - nov
+    - déc
+    day_names:
+    - Dimanche
+    - Lundi
+    - Mardi
+    - Mercredi
+    - Jeudi
+    - Vendredi
+    - Samedi
     formats:
       default: "%m/%d/%Y"
       with_weekday: "%a %m/%d/%y"
   helpers:
     actions: Actions
-    submit:
-      # This will be the default ones, will take effect if no other
-      # are specifically defined for the models.
-      create: "Créer"
-      update: "Modifier"
     links:
       back: Précédent
       cancel: Annuler
@@ -42,11 +69,15 @@ fr:
       destroy: Supprimer
       edit: Modifier
       new: Nouveau
+    submit:
+      create: Créer
+      update: Modifier
   time:
     formats:
       date: "%d %B %Y"
-      default: "%d/%m/%Y %Hh %Mmin %Ss"
-      only_day: "%d" 
       day_month_year: "%d %b %Y"
+      default: "%d/%m/%Y %Hh %Mmin %Ss"
+      only_day: "%d"
+      short: "%B %d"
   titles:
     application: Le Killer
