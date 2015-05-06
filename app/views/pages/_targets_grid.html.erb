@@ -17,7 +17,7 @@
             <% elsif target.unreached? %>
               <p><span class="label label-warning">CIBLE NON ATTEINTE</span></p>
             <% else %>
-              <p><%= link_to 'J\'AI ATTEINT MA CIBLE', kill_path(target.pursued.login),:method => :put, class:'btn btn-default' %></p>
+              <p><%= link_to 'J\'AI ATTEINT MA CIBLE', kill_path(target.pursued.login),:method => :put, :data => { :confirm => 'Es-tu sûr de vouloir continuer ? Tu vas dévoiler à ta cible ton identité et elle devra confirmer sa mort.'},  class:'btn btn-default' %></p>
             <% end %>
           </div>
         </div>
@@ -33,29 +33,28 @@
 
     <% end %>
   </div>
-<hr />
 
      <% if @participant.alive? %>
 
-     <% if @participant.suffering? %>
-  <p>
-    <i><%= @participant.hunter.first_name %> <%= @participant.hunter.last_name %> a indiqué vous avoir tué : est-ce vrai ? </i>
-    <%= link_to "OUI", confirm_my_death_path, :method => :put, class:'btn btn-success' %>
-    <%= link_to "NON", deny_my_death_path,:method => :put, class:'btn btn-danger' %>
-</p>
+      <% if @participant.suffering? %>
 
-  <% if @participant.target.suffering? %>
-    <div class="alert alert-danger" role="alert"><p><b>Un énorme conseil :</b> On dirait que tu as tué ta cible et que sa mort est en "attente de confirmation" de sa part. Avant de confirmer ta propre mort, attend que ta cible confirme que tu l'as bien tué. 
-    Autrement, cette cible ne sera pas comptabilisé dans ton tableau des cibles atteintes.</p></div>
-  <% end %>
+        <hr />
+        <p>
+          <i><%= @participant.hunter.first_name %> <%= @participant.hunter.last_name %> a indiqué vous avoir tué : est-ce vrai ? </i>
+          <%= link_to "OUI", confirm_my_death_path, :method => :put, :data => { :confirm => 'Es-tu sûr de vouloir continuer ?'}, class:'btn btn-success' %>
+          <%= link_to "NON", deny_my_death_path,:method => :put, :data => { :confirm => 'Es-tu sûr de vouloir continuer ?'},  class:'btn btn-danger' %>
+       </p>
 
-  <% end %>
+        <% if @participant.target.suffering? %>
+          <div class="alert alert-danger" role="alert"><p><b>Un énorme conseil :</b> On dirait que tu as tué ta cible et que sa mort est en "attente de confirmation" de sa part. Avant de confirmer ta propre mort, attend que ta cible confirme que tu l'as bien tué. 
+          Autrement, cette cible ne sera pas comptabilisé dans ton tableau des cibles atteintes.</p></div>
+        <% end %>
+        <hr />
 
-     <%= link_to "La personne qui me menace m'a tué", confirm_my_death_path, :method => :put, class:'about-section-btn', :data => { :confirm => 'Es-tu sur de continuer ? Tu vas mourir si tu cliques sur oui'}  %>
-
-
+      <% end %>
                
     <% else %>
+    <hr />
       <p><i>Malheureusement, l'aventure s'arrête ici.<br /> Tu as été tué par <%= @participant.hunters.first.hunter.first_name %> <%= @participant.hunters.first.hunter.last_name %>.</i></p> 
-    <% end %>
       <hr />
+    <% end %>
