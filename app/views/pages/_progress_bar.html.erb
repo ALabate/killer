@@ -1,0 +1,20 @@
+
+<% nb_vivants = Target.healthy.count %>
+<% nb_tues = Target.killed.count + Target.suffering.count %>
+<% nb_participants = nb_vivants + nb_tues %>
+<% pc_tues = (( 100.to_f / nb_participants.to_f) * nb_tues.to_f ).to_i %>
+<% pc_vivants = (( 100.to_f / nb_participants.to_f) * nb_vivants.to_f ).to_i  %>
+<% pc_vivants +=  100 - (pc_vivants + pc_tues) %>
+
+
+ <div class="progress">
+  
+  <div class="progress-bar progress-bar-danger" style="width: <%= pc_tues %>%">
+    JOUEURS MORTS
+  </div>
+
+  <div class="progress-bar progress-bar-success" style="width: <%= pc_vivants %>%">
+    JOUEURS ENCORE EN VIE
+  </div>
+
+</div>
