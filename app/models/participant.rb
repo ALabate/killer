@@ -71,4 +71,9 @@ class Participant < ActiveRecord::Base
 		t.recognize_as_unreached!
 	end
 
+	# Return who killed me
+	def killer
+		hunters.last.try(:hunter)
+	end
+
 end

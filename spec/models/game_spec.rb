@@ -36,6 +36,44 @@ RSpec.describe Game, :type => :model do
 
 			end
 
+		describe "#killer" do
+
+			context 'A kill B then A kill B then A kill C' do
+				let(:cyril) { player1 }
+				let(:nicolas){ cyril.target }
+				let(:thomas){ nicolas.target }
+				let(:joan){ thomas.target }
+
+				before do 
+
+					# cyril target is nicolas
+
+					cyril.target.confirm_kill!
+					cyril.target.kill!
+
+					# cyril target is thomas
+
+					cyril.target.confirm_kill!
+					cyril.target.kill!
+
+					# cyril target is joan
+
+					cyril.target.confirm_kill!
+					cyril.target.kill!
+
+					# cyril target is himself but we don't care
+				end
+
+				it 'every cyril targets have cyril as its peope who killed him' do
+					expect(nicolas.killer).to eq(cyril)
+					expect(thomas.killer).to eq(cyril)
+					expect(joan.killer).to eq(cyril)
+				end
+			end
+		
+		end
+
+
 		describe 'events' do
 
 			context 'A kill B, B didnt kill his target and B confirm that A killed him'
