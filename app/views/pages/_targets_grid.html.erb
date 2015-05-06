@@ -1,5 +1,5 @@
   <div class="row" >
-      <% @participant.targets.each do |target| %>
+      <% @participant.targets.order(:updated_at).each do |target| %>
 
        <div class="col-sm-2 col-md-2"> 
         <div class="thumbnail img-thumbnail">
