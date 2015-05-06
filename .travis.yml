@@ -19,3 +19,15 @@ rvm:
 addons:
   postgresql: "9.3"
 sudo: false
+deploy:
+  provider: heroku
+  api_key: 1e910af9-0db1-4f6d-a9b7-0632db5be05b
+  skip_cleanup: true
+  on:
+    all_branches: true
+  app:
+    master: killer-utt
+    develop: killer-utt-staging
+  run:
+    - "rake db:migrate"
+    - "rake cleanup"
