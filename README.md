@@ -1,5 +1,8 @@
 ![KILLER Banner](http://cl.ly/image/3u1E1y3Z432L/Screen%20Shot%202015-04-22%20at%2022.43.39.png)
 
+__Master__ [![Build Status](https://magnum.travis-ci.com/supertinou/killer.svg?token=qc3AoUDpTfCVuzP4GvZq&branch=master)](https://magnum.travis-ci.com/supertinou/killer)
+__Develop__ [![Build Status](https://magnum.travis-ci.com/supertinou/killer.svg?token=qc3AoUDpTfCVuzP4GvZq&branch=develop)](https://magnum.travis-ci.com/supertinou/killer)
+
 ## Getting Started
 
 After you have cloned this repo, run this setup script to set up your machine
