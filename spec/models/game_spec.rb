@@ -51,8 +51,9 @@ RSpec.describe Game, :type => :model do
 					player_a.target.confirm_kill!
 				end
 				
-				it 'B has no target anymore' do
+				it 'B has no target anymore and no hunter anymore' do
 					expect(player_b.target).to eq(nil)
+					expect(player_b.hunter).to eq(nil)
 				end
 
 				it 'B has an unreached target' do
@@ -117,19 +118,29 @@ RSpec.describe Game, :type => :model do
 					expect(player1.targets.unreached.count).to eq(1)
 				end
 
-				it 'A should not have current target' do
+				it 'A should not have current target and no current hunter' do
 					expect(player1.target).to eq(nil)
+					expect(player1.hunter).to eq(nil)
 				end
 
 				###
 
-				it 'B should not have current target' do
+				it 'B should not have current target and no current hunter' do
 					expect(b.target).to eq(nil)
+					expect(b.hunter).to eq(nil)
 				end
 
 				it 'B should have an unreached target' do
 					expect(b.targets.unreached.count).to eq(1)
 				end
+
+				### 
+
+				it 'G is alive' do
+					expect(g.alive?).to eq(true)
+				end
+
+
 
 				#####
 
