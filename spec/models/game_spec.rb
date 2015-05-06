@@ -94,6 +94,10 @@ RSpec.describe Game, :type => :model do
 					expect(player_b.hunter).to eq(nil)
 				end
 
+				it 'B killer is 1' do
+					expect(player_b.killer).to eq(player_a)
+				end
+
 				it 'B has an unreached target' do
 					expect(player_b.targets.unreached.first.pursued).to eq(player_b_target)
 				end
@@ -148,46 +152,62 @@ RSpec.describe Game, :type => :model do
 				
 				end
 
-				it 'A should have one killed target' do
-					expect(player1.targets.killed.count).to eq(1)
+				describe 'A' do
+
+					subject{ a }
+
+					it 'A should have one killed target' do
+						expect(a.targets.killed.count).to eq(1)
+					end
+
+					it 'A should have one unreached target' do
+						expect(a.targets.unreached.count).to eq(1)
+					end
+
+					it 'A should not have current target and no current hunter' do
+						expect(a.target).to eq(nil)
+						expect(a.hunter).to eq(nil)
+					end
+
+					it 'A killer is G' do
+						expect(a.killer).to eq(g)
+					end
 				end
 
-				it 'A should have one unreached target' do
-					expect(player1.targets.unreached.count).to eq(1)
+				describe 'B' do
+
+					subject{ b }
+
+					it 'B should not have current target and no current hunter' do
+						expect(b.target).to eq(nil)
+						expect(b.hunter).to eq(nil)
+					end
+
+					it 'B killer is A' do
+						expect(b.killer).to eq(a)
+					end
+
+					it 'B should have an unreached target' do
+						expect(b.targets.unreached.count).to eq(1)
+					end
+
 				end
 
-				it 'A should not have current target and no current hunter' do
-					expect(player1.target).to eq(nil)
-					expect(player1.hunter).to eq(nil)
-				end
+				describe 'G' do
 
-				###
+					subject{ g }
 
-				it 'B should not have current target and no current hunter' do
-					expect(b.target).to eq(nil)
-					expect(b.hunter).to eq(nil)
-				end
+					it 'G is alive' do
+						expect(g.alive?).to eq(true)
+					end
 
-				it 'B should have an unreached target' do
-					expect(b.targets.unreached.count).to eq(1)
-				end
+					it 'G should be alive ' do
+						expect(g.alive?).to eq(true)
+					end
 
-				### 
-
-				it 'G is alive' do
-					expect(g.alive?).to eq(true)
-				end
-
-
-
-				#####
-
-				it 'G should be alive ' do
-					expect(g.alive?).to eq(true)
-				end
-
-				it 'G should have an new target ' do
-					expect(g.target).to_not eq(nil)
+					it 'G should have an new target ' do
+						expect(g.target).to_not eq(nil)
+					end
 				end
 
 			end
@@ -214,8 +234,6 @@ RSpec.describe Game, :type => :model do
 				it 'A should have a new target and it should be the target of B' do
 					expect(a.target).to eq(c)
 				end
-
-
 
 				it 'B should not have a current target' do
 					expect(b.target).to eq(nil)
