@@ -1,5 +1,6 @@
   <div class="row" >
-      <% @participant.targets.order(:updated_at).each do |target| %>
+      <% participants = @participant.targets.order(:updated_at) %>
+      <% participants.each_with_index do |target| %>
 
        <div class="col-sm-2 col-md-2"> 
         <div class="thumbnail img-thumbnail">
@@ -9,7 +10,8 @@
             <p><%= target.pursued.first_name %> <%= target.pursued.last_name %></p>
             <% if target.killed? %>
               <p><span class="label label-success">CIBLE ATTEINTE</span> <br />
-                <% dif = TimeDifference.between(target.pursued.created_at, target.pursued.updated_at).in_general %>
+
+                <% dif = TimeDifference.between(target.created_at, target.updated_at).in_general %>
                 <small><i>(en <%= dif[:hours] %>h et <%= dif[:minutes]%> minutes)</i></small>
                </p>
             <% elsif target.suffering? %>
