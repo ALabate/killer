@@ -8,7 +8,10 @@
             
             <p><%= target.pursued.first_name %> <%= target.pursued.last_name %></p>
             <% if target.killed? %>
-              <p><span class="label label-success">CIBLE ATTEINTE</span> </p>
+              <p><span class="label label-success">CIBLE ATTEINTE</span> <br />
+                <% dif = TimeDifference.between(target.pursued.created_at, target.pursued.updated_at).in_general %>
+                <small><i>(en <%= dif[:hours] %>h et <%= dif[:minutes]%> minutes)</i></small>
+               </p>
             <% elsif target.suffering? %>
               <p>
                 <span class="label label-warning">CONFIRMATION</span>
@@ -26,6 +29,7 @@
     <% end %>
 
     <% nb_fake_target = @participant.targets.count <= 6 ? 6 - @participant.targets.count : 0 %>
+
 
     <% nb_fake_target.times.each do |t| %>
 
