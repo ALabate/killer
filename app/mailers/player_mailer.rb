@@ -4,13 +4,13 @@ class PlayerMailer < ApplicationMailer
 
 		@hunter = target.hunter
 		@target = target.pursued
-		mail(to: @hunter.email, subject: 'Une nouvelle cible !')
+		mail(to: @hunter.email, subject: 'Nouvelle cible !')
 	end
 
 	def confirm_kill_email(target)
 		@hunter = target.hunter
 		@target = target.pursued
-		mail(to: @target.email, subject: "On dirait que l'on t'a tué")
+		mail(to: @target.email, subject: "Confirme ta mort !")
 	end
 
 	def dead_email(target)
