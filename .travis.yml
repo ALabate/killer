@@ -31,4 +31,6 @@ deploy:
     develop: killer-utt-staging
   run:
     - "rake db:migrate"
+    - "rake db:setup"
     - "rake cleanup"
+    - "rake db:seed"
