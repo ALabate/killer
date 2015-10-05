@@ -9,10 +9,7 @@
             
             <p><%= target.pursued.first_name %> <%= target.pursued.last_name %></p>
             <% if target.killed? %>
-              <p><span class="label label-success">CIBLE ATTEINTE</span> <br />
-
-                <% dif = TimeDifference.between(target.created_at, target.updated_at).in_general %>
-                <small><i>(en <%= dif[:hours] %>h et <%= dif[:minutes]%> minutes)</i></small>
+              <p><span class="label label-success">CIBLE ATTEINTE</span>
                </p>
             <% elsif target.suffering? %>
               <p>
