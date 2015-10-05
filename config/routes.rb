@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 				get 'alive'
 				get 'loop'
 				get 'start'
+				get 'refresh_participants_infos'
 			end
 			member do 
 				get 'targets'

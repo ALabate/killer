@@ -51,6 +51,19 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
     end
   end
 
+  def refresh_participants_infos
+    Participant.all.each do |participant|
+      user = EtuUtt::Api.get(current_access_token, 'public/users/'+ participant.login )
+      Participant.where(login: user['login']).take.update_attributes( 
+                                                            student_id: user['studentId'], 
+                                                            email: user['email'],
+                                                            first_name: user['firstName'],
+                                                            last_name: user['lastName'],
+                                                            image: user['_links'].detect{|link| link["rel"] == "user.image"}["uri"]
+                                                           )
+    end
+  end
+
   # DELETE /participants/1
   def destroy
     @participant.destroy
@@ -60,7 +73,7 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_participant
-      @participant = Participant.find_by_login(params[:id])
+      @participant_info = @participant = Participant.find_by_login(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
