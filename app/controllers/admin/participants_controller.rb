@@ -27,6 +27,10 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
     @participants = Participant.validated.all
   end
 
+  def start 
+    Game.current.allocate_players_targets
+  end
+
   # POST /participants
   def create
     @participant = Participant.new(participant_params)
