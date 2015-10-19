@@ -32,7 +32,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Liste des participants</a></li>
+            <li><a href="<%= participants_path %>">Liste des participants</a></li>
+            <li><a href="<%= loop_participants_path %>">Boucle</a></li>
+            <li><a href="<%= stats_participants_path %>">Statistiques</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href='#'>Connecté en tant que <b><%= current_user['fullName'] %></b></a></li><li><%= link_to "Se déconnecter", oauth2_sign_out_path %></li>

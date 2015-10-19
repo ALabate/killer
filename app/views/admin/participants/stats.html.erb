@@ -1,0 +1,39 @@
+
+<p>Nombre de participants: <%= Participant.validated.count %></p>
+
+<p>Nombre de participants vivants: <%= Target.healthy.count %></p>
+
+<p>Nombre de kills: <%= Target.killed.count %></p>
+<p>Nombre de kills non confirmés: <%= Target.suffering.count %></p>
+
+<p>Premier kill: <%= Target.killed.order(:updated_at).first.pursued %> a été tué par <%= Target.killed.order(:updated_at).first.hunter %></p>
+
+<p>Dernier kill: <%= Target.killed.order('updated_at DESC').first.pursued %> a été tué par <%= Target.killed.order('updated_at DESC').first.hunter %></p>
+
+<h1>Top killers </h1>
+
+
+<% Participant.joins(:targets).where("targets.aasm_state = ?", 'killed').select('participants.*, count(targets.id) as targets_killed_count').group('participants.id').order('targets_killed_count DESC').each do |participant| %>
+<table class="table table-striped table-bordered table-hover">
+	<tr class="warning">
+		<td><b><%= participant.first_name %> <%= participant.last_name %></b></td>
+		<td><b><%= participant.targets_killed_count %> kills </b></td>
+
+	<tr>
+
+
+<% participant.targets.killed.order(:updated_at).each do |target| %>
+					<tr>
+					<td>
+					<%=	 target.pursued.first_name %>
+					<%=	 target.pursued.last_name %> 
+
+					</td>
+						<td>
+							le <%=	 I18n.l(target.pursued.updated_at) %> 
+						</td>
+					</tr>
+					<% end %>
+</table>
+<% end %>
+

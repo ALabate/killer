@@ -27,6 +27,10 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
     @participants = Participant.validated.all
   end
 
+  def stats
+
+  end
+
   def start 
     Game.current.allocate_players_targets
   end
