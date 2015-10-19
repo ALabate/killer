@@ -10,6 +10,7 @@
 
 <p>Dernier kill: <%= Target.killed.order('updated_at DESC').first.pursued %> a été tué par <%= Target.killed.order('updated_at DESC').first.hunter %></p>
 
+
 <h1>Top killers </h1>
 
 
@@ -30,7 +31,7 @@
 
 					</td>
 						<td>
-							le <%=	 I18n.l(target.pursued.updated_at) %> 
+							le <%=	 I18n.l(target.updated_at) %> 
 						</td>
 					</tr>
 					<% end %>
