@@ -18,7 +18,7 @@
 <table class="table table-striped table-bordered table-hover">
 	<tr class="warning">
 		<td><b><%= participant.first_name %> <%= participant.last_name %></b></td>
-		<td><b><%= participant.targets_killed_count %> kills </b></td>
+		<td><b><%= participant.targets_killed_count %> <%= 'kill'.pluralize(participant.targets_killed_count)  %> </b></td>
 
 	<tr>
 
