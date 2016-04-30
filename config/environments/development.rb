@@ -22,9 +22,6 @@ Rails.application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("HOST"))
-
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 

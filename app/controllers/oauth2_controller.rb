@@ -7,7 +7,6 @@ class Oauth2Controller < ApplicationController
   def callback
    tokens = EtuUtt::Api.new.get_tokens(params[:authorization_code])
    store_tokens(tokens)
-   user = current_user
    Participant.where(login: user['login']).first_or_create( 
                                                             student_id: user['studentId'], 
                                                             email: user['email'],
@@ -20,7 +19,7 @@ class Oauth2Controller < ApplicationController
 
   def sign_out
   	flush_tokens()
-  	redirect_to ENV.fetch("HOST")
+  	redirect_to ENV['HOST']
   end
 
 end

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
 	root to: 'pages#home'
-	get 'sign_up', to: 'oauth2#authorize_app'
-	get 'sign_in', to: 'oauth2#authorize_app'
+	get '/sign_up', to: 'oauth2#authorize_app'
+	get '/sign_in', to: 'oauth2#authorize_app'
 
 	put 'kill/:login', to: 'killer#kill', as: :kill
 

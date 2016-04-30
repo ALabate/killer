@@ -32,7 +32,7 @@
 
                     
                     <p>
-                        <%= link_to "JE ME DECONNECTE DE CET ESPACE ULTRA SECRET", oauth2_sign_out_path, class: "big-background-btn" %>
+                        <%= link_to "JE ME DECONNECTE DE CET ESPACE ULTRA SECRET", ENV['RAILS_RELATIVE_URL_ROOT']+oauth2_sign_out_path, class: "big-background-btn" %>
                     </p>
                 <% else %>
                 <p class='big-background'> 
