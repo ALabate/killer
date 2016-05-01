@@ -26,6 +26,13 @@ fr:
         confirm: Confirm
         destroy: Destroy
         edit: Edit
+  activerecord:
+    errors:
+        models:
+           participant:
+              attributes:
+                login:
+                  taken: L'étudiant est dejà enregistré
   date:
     abbr_day_names:
     - Dim

@@ -5,7 +5,7 @@ class EtuUttLoginValidator < ActiveModel::Validator
   		token = token[:access_token]
 		participant_info = record.login ? EtuUtt::Api.get(token, 'public/users/'+record.login ) : nil
 		if !participant_info.present?
-			record.errors[:base] << "Le login n'existe pas dans la base de données des étudiants"
+			record.errors[:base] << "Le login de l'etudiant n'existe pas dans la base de données du site etu"
 		end
   end
 end

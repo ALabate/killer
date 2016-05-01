@@ -8,12 +8,13 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
 
   # GET /participants/1
   def show
-    @participant_info ||= EtuUtt::Api.get(current_access_token, 'public/users/'+ @participant.login )
+    #@participant_info ||= EtuUtt::Api.get(current_access_token, 'public/users/'+ @participant.login )
   end
 
   # GET /participants/new
   def new
     @participant = Participant.new
+    @participant.paid = true
   end
 
   # GET /participants/1/edit
@@ -39,8 +40,8 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
   def create
     @participant = Participant.new(participant_params)
     @participant.game = Game.last
-    if @participant.save
-      redirect_to ENV['RAILS_RELATIVE_URL_ROOT']+participant_path(@participant), notice: 'Participant was successfully created.'
+    if @participant.save!
+      redirect_to participant_path(@participant), notice: 'Participant was successfully created.'
     else
       render :new
     end
@@ -49,7 +50,7 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
   # PATCH/PUT /participants/1
   def update
     if @participant.update(participant_params)
-      redirect_to ENV['RAILS_RELATIVE_URL_ROOT']+participant_path(@participant), notice: 'Participant was successfully updated.'
+      redirect_to participant_path(@participant), notice: 'Participant was successfully updated.'
     else
       render :edit
     end
@@ -71,7 +72,7 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
   # DELETE /participants/1
   def destroy
     @participant.destroy
-    redirect_to ENV['RAILS_RELATIVE_URL_ROOT']+participants_path, notice: 'Participant was successfully destroyed.'
+    redirect_to participants_path, notice: 'Participant was successfully destroyed.'
   end
 
   private

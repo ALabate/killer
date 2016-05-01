@@ -15,17 +15,14 @@
       <table class="table table-bordered">
         <tbody>
             
-            <tr><td><b><%= model_class.human_attribute_name(:login) %></b></td><td><%= @participant.login %></td></tr>
+            <tr><td><b>Login</b></td><td><%= @participant.login %></td></tr>
             <tr>
-              <tr><td><b><%= model_class.human_attribute_name(:student_id) %></b></td><td><%= @participant_info['studentId'] %></td></tr>
+              <tr><td><b>Student ID</b></td><td><%= @participant.student_id %></td></tr>
             <tr>
-              <td><b><%= model_class.human_attribute_name(:full_name) %></b></td><td><%= @participant_info['fullName'] %></td>
+              <td><b>Nom</b></td><td><%= @participant.first_name %> <%= @participant.last_name %></td>
             </tr>
             <tr>
-              <td><b><%= model_class.human_attribute_name(:email) %></b></td><td><%= @participant_info['email'] %></td>
-            </tr>
-            <tr>
-              <td><b><%= model_class.human_attribute_name(:study) %></b></td><td><%= @participant_info['branch'] %> <%= @participant_info['level'] %> <%= @participant_info['speciality'] %></td>
+              <td><b>Email</b></td><td><%= @participant.email %></td>
             </tr>
             <tr>
                 <td><b>Inscription</b></td>
@@ -49,14 +46,9 @@
 
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              ENV['RAILS_RELATIVE_URL_ROOT']+participants_path, :class => 'btn btn-default'  %>
+              participants_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              ENV['RAILS_RELATIVE_URL_ROOT']+edit_participant_path(@participant), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              ENV['RAILS_RELATIVE_URL_ROOT']+participant_path(@participant),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+              edit_participant_path(@participant), :class => 'btn btn-default' %>
 
 
 <%= link_to 'Cibles', targets_participant_path(@participant), :class => 'btn btn-default'  %>

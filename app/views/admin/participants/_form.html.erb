@@ -1,12 +1,24 @@
+<% if @participant.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+  <ul>
+   <% @participant.errors.full_messages.each do |msg| %>
+    <li>* <%= msg %></li>
+   <% end %>
+ </ul>
+</div>
+<% end %>
+
 <% url = if @participant.persisted? 
-          ENV['RAILS_RELATIVE_URL_ROOT']+participant_path(@participant)
+          participant_path(@participant)
          else
-          ENV['RAILS_RELATIVE_URL_ROOT']+participants_path
+          participants_path
          end
  %>
 
   <%= simple_form_for @participant, url: url, :html => { :class => 'form-horizontal' } do |f| %>
-  
+    
+   <%= error_span(@participant) %>
+
   <% if @participant.persisted? %>
   	<%= f.input :login, disabled: true %>
   <% else %>
@@ -21,5 +33,5 @@
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                ENV['RAILS_RELATIVE_URL_ROOT']+participants_path, :class => 'btn btn-default' %>
+                participants_path, :class => 'btn btn-default' %>
 <% end %>

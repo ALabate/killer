@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 	get 'oauth2/sign_out', to: 'oauth2#sign_out'
 
 	scope "/admin", module: "admin" do
-		resources :participants do 
+		resources :participants, except: [:destroy, :new, :create] do 
 			collection do 
 				get 'killed'
 				get 'alive'

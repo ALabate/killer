@@ -7,12 +7,16 @@ class Oauth2Controller < ApplicationController
   def callback
    tokens = EtuUtt::Api.new.get_tokens(params[:authorization_code])
    store_tokens(tokens)
-   Participant.where(login: user['login']).first_or_create( 
+   user = current_user
+   logger.debug "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   logger.debug user
+   Participant.where(login: user['login']).first_or_create!( 
                                                             student_id: user['studentId'], 
                                                             email: user['email'],
                                                             first_name: user['firstName'],
                                                             last_name: user['lastName'],
-                                                            image: user['_links'].detect{|link| link["rel"] == "user.image"}["uri"]
+                                                            image: user['_links'].detect{|link| link["rel"] == "user.image"}["uri"],
+                                                            game: Game.current
                                                            )
    redirect_to ENV.fetch("HOST")
   end

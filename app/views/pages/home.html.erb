@@ -11,7 +11,7 @@
                 <p class='big-background'>
                     Hey, salut <b><%= current_user['firstName'] %> <%= current_user['lastName'] %> ! </b> 
                 </p>
-                <p></p>
+                
                     
                         <% if @participant.present? && @participant.paid %>
                             <% if Game.current.open? %>
@@ -26,18 +26,26 @@
 
                         <% else %>
                             <p class='big-background'> 
-                                <%= render 'waiting_for_game_openning' %>
+                                <%= render 'payment_is_waiting.html.erb' %>
                             </p>
                         <% end %>
 
                     
                     <p>
-                        <%= link_to "JE ME DECONNECTE DE CET ESPACE ULTRA SECRET", ENV['RAILS_RELATIVE_URL_ROOT']+oauth2_sign_out_path, class: "big-background-btn" %>
+                        <%= link_to "JE ME DECONNECTE DE CET ESPACE ULTRA SECRET", oauth2_sign_out_path, class: "big-background-btn" %>
                     </p>
                 <% else %>
                 <p class='big-background'> 
 
                         C'est ici que tu auras toutes les infos sur tes cibles !
+
+                </p>
+              <p class='big-background'> 
+
+                      🔫  Pour t'inscrire :  🔫
+                        <br/><br/> 1) Connecte toi sur cet espace ultra secret
+                        <br/> 2) Valide ton inscription en reglant une participation de 0,50 € au BDE
+        
                     </p>
 
                 <p>
