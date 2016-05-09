@@ -1,5 +1,5 @@
   <div class="row" >
-      <% participants = @participant.targets.order(:updated_at) %>
+      <% participants = @participant.targets.order(:updated_at)  %>
       <% participants.each_with_index do |target| %>
 
        <div class="col-sm-2 col-md-2"> 
@@ -27,8 +27,9 @@
 
     <% end %>
 
-    <% nb_fake_target = @participant.targets.count <= 6 ? 6 - @participant.targets.count : 0 %>
+    <% nb_fake_target = @participant.targets.count <= 5 ? 5 - @participant.targets.count : 0 %>
 
+    <%= render 'pages/target_luc_bochet' %>
 
     <% nb_fake_target.times.each do |t| %>
 

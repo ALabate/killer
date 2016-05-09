@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "Le Killer <killer.utt.a15@gmail.com>"
+  default from: "Le Killer <utt.killer@gmail.com>"
   layout 'mailer'
 end
