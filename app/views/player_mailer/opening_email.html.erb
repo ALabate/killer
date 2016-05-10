@@ -2,18 +2,16 @@
 
 <p>Salut <%= @participant.first_name %> <%= @participant.last_name %>, </p>
 
-<p>Après un long moment de suspens l'édition Automne 2015 du jeu du Killer ouvre enfin !</p>
-
 <h3>Voilà le mode d'emploi: </h3>
 
 <ul>
-	<li>Vas sur le site: <%= link_to ENV['HOST'], ENV['HOST'] %> </li>
+	<li>Vas sur le site: <%= link_to ENV['WEBSITE_URL'], ENV['WEBSITE_URL'] %> </li>
 	<li>Ta victime sera affichée</li>
 	<li>Quand tu killes ta victime, connecte toi sur le site et clic sur le bouton "J'AI ATTEINT MA CIBLE"</li>
 	<li>Ta victime recevra un mail lui demandant de valider sa mort sur le site</li>
 	<li>Puis, tu reçois un email et ta nouvelle victime apparaîtra sur le site et c'est reparti !
-	(Tu peux lui demander de vive voix aussi si tu veux, of course, mais il faut à chaque fois annoncer la mort de ta victime sur le site)
+	(Tu peux lui demander de vive voix aussi si tu veux, bien sûr, mais il faut à chaque fois annoncer la mort de ta victime sur le site)
 	</li>
 </ul>
 
-<h3>C'est partiiii ! A vous de mouiller !</h3>
+<h3>C'est parti ! </h3>
