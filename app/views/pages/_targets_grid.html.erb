@@ -2,11 +2,11 @@
       <% participants = @participant.targets.order(:updated_at)  %>
       <% participants.each_with_index do |target| %>
 
-       <div class="col-sm-2 col-md-2"> 
+       <div class="col-sm-2 col-md-2">
         <div class="thumbnail img-thumbnail">
           <img alt="100%x200" src="https://etu.utt.fr<%= target.pursued.image %>" class="img-thumbnail" data-holder-rendered="true" style="width: 100%; display: block;">
           <div class="caption">
-            
+
             <p><%= target.pursued.first_name %> <%= target.pursued.last_name %></p>
             <% if target.killed? %>
               <p><span class="label label-success">CIBLE ATTEINTE</span>
@@ -29,7 +29,7 @@
 
     <% nb_fake_target = @participant.targets.count <= 5 ? 5 - @participant.targets.count : 0 %>
 
-    <%= render 'pages/target_luc_bochet' %>
+    <%= render 'pages/target_president' %>
 
     <% nb_fake_target.times.each do |t| %>
 
@@ -50,15 +50,15 @@
        </p>
 
         <% if @participant.target.suffering? %>
-          <div class="alert alert-danger" role="alert"><p><b>Un énorme conseil :</b> On dirait que tu as tué ta cible et que sa mort est en "attente de confirmation" de sa part. Avant de confirmer ta propre mort, attend que ta cible confirme que tu l'as bien tué. 
+          <div class="alert alert-danger" role="alert"><p><b>Un énorme conseil :</b> On dirait que tu as tué ta cible et que sa mort est en "attente de confirmation" de sa part. Avant de confirmer ta propre mort, attend que ta cible confirme que tu l'as bien tué.
           Autrement, cette cible ne sera pas comptabilisé dans ton tableau des cibles atteintes.</p></div>
         <% end %>
         <hr />
 
       <% end %>
-               
+
     <% else %>
     <hr />
-      <p><i>Malheureusement, l'aventure s'arrête ici.<br /> Tu as été tué par <%= @participant.killer.first_name %> <%= @participant.killer.last_name %>.</i></p> 
+      <p><i>Malheureusement, l'aventure s'arrête ici.<br /> Tu as été tué par <%= @participant.killer.first_name %> <%= @participant.killer.last_name %>.</i></p>
       <hr />
     <% end %>
