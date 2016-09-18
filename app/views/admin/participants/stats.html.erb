@@ -6,10 +6,13 @@
 <p>Nombre de kills: <%= Target.killed.count %></p>
 <p>Nombre de kills non confirmés: <%= Target.suffering.count %></p>
 
-<p>Premier kill: <%= Target.killed.order(:updated_at).first.pursued %> a été tué par <%= Target.killed.order(:updated_at).first.hunter %></p>
+<% if Target.killed.count > 0 %>
 
-<p>Dernier kill: <%= Target.killed.order('updated_at DESC').first.pursued %> a été tué par <%= Target.killed.order('updated_at DESC').first.hunter %></p>
+  <p>Premier kill: <%= Target.killed.order(:updated_at).first.pursued %> a été tué par <%= Target.killed.order(:updated_at).first.hunter %></p>
 
+  <p>Dernier kill: <%= Target.killed.order('updated_at DESC').first.pursued %> a été tué par <%= Target.killed.order('updated_at DESC').first.hunter %></p>
+
+<% end %>
 
 <h1>Top killers </h1>
 
@@ -27,14 +30,13 @@
 					<tr>
 					<td>
 					<%=	 target.pursued.first_name %>
-					<%=	 target.pursued.last_name %> 
+					<%=	 target.pursued.last_name %>
 
 					</td>
 						<td>
-							le <%=	 I18n.l(target.updated_at) %> 
+							le <%=	 I18n.l(target.updated_at) %>
 						</td>
 					</tr>
 					<% end %>
 </table>
 <% end %>
-
