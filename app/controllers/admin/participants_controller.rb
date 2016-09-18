@@ -32,8 +32,9 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
 
   end
 
-  def start 
+  def start
     Game.current.allocate_players_targets
+    redirect_to participants_index_path, notice: 'Game has been started successfully.'
   end
 
   # POST /participants
@@ -59,14 +60,15 @@ class Admin::ParticipantsController < Admin::AdminApplicationController
   def refresh_participants_infos
     Participant.all.each do |participant|
       user = EtuUtt::Api.get(current_access_token, 'public/users/'+ participant.login )
-      Participant.where(login: user['login']).take.update_attributes( 
-                                                            student_id: user['studentId'], 
+      Participant.where(login: user['login']).take.update_attributes(
+                                                            student_id: user['studentId'],
                                                             email: user['email'],
                                                             first_name: user['firstName'],
                                                             last_name: user['lastName'],
                                                             image: user['_links'].detect{|link| link["rel"] == "user.image"}["uri"]
                                                            )
     end
+    redirect_to participants_index_path, notice: 'Participants were successfully refreshed.'
   end
 
   # DELETE /participants/1

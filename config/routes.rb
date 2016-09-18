@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 	get 'oauth2/sign_out', to: 'oauth2#sign_out'
 
 	scope "/admin", module: "admin" do
-		resources :participants, except: [:destroy, :new, :create] do 
-			collection do 
+		resources :participants, except: [:destroy, :new, :create] do
+			collection do
 				get 'killed'
 				get 'alive'
 				get 'loop'
@@ -23,11 +23,11 @@ Rails.application.routes.draw do
 				get 'start'
 				get 'refresh_participants_infos'
 			end
-			member do 
+			member do
 				get 'targets'
 			end
 		end
-		get '/', to: 'participants#index'
+		get '/', to: 'participants#index', as: :participants_index
 	end
 
 	if Rails.env.development?
