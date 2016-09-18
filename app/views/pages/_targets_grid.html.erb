@@ -18,7 +18,7 @@
               </p>
             <% elsif target.unreached? %>
               <p><span class="label label-warning">CIBLE NON ATTEINTE</span></p>
-            <% else %>
+            <% elsif current_user['login'] == target.hunter.login %>
               <p><%= link_to 'J\'AI ATTEINT MA CIBLE', kill_path(target.pursued.login),:method => :put, :data => { :confirm => 'Es-tu sûr de vouloir continuer ? Tu vas dévoiler à ta cible ton identité et elle devra confirmer sa mort.'},  class:'btn btn-default' %></p>
             <% end %>
           </div>
