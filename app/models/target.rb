@@ -6,7 +6,7 @@ class Target < ActiveRecord::Base
   validates :hunter,:pursued, presence: true
   validates :hunter_id, uniqueness: { scope: :pursued_id }
 
-  after_create :notify_new_target
+  #after_create :notify_new_target
 
   scope :not_killed, -> { where.not(aasm_state: 'killed') }
 
