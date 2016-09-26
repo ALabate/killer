@@ -13,7 +13,7 @@ class Game < ActiveRecord::Base
 			else
 				Target.create!(hunter: player, pursued: players.first)
 			end
-			PlayerMailer.opening_email(player).deliver_now
+			#PlayerMailer.opening_email(player).deliver_now
 		end
 
 		nil
